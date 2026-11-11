@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No.59 防水クラリーノ ベーシック カラーコンビ｜商品詳細</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Yawamin, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+      color: #333;
+      background-color: #f7f7f7;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 共通ヘッダー（ボルドー） */
+    .ikd-header {
+      background-color: #4a1525;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ikd-logo {
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 4px 10px;
+      border-radius: 15px;
+    }
+    .ikd-header-nav {
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* メインコンテンツコンテナ（モバイル最適化） */
+    .pdp-container {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 15px;
+    }
+
+    /* パンくず */
+    .pdp-breadcrumb {
+      font-size: 10px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+    .pdp-breadcrumb a {
+      color: #888;
+    }
+
+    /* 商品タイトル */
+    .pdp-title {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    /* タイトル下評価スコア */
+    .pdp-rating-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+    .pdp-stars {
+      color: #611822;
+      letter-spacing: 1px;
+    }
+    .pdp-rating-count {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-size: 11px;
+    }
+
+    /* メイン商品画像エリア */
+    .pdp-image-area {
+      position: relative;
+      width: 100%;
+      background: #fff;
+      margin-bottom: 12px;
+    }
+    .pdp-main-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .pdp-arrow-left, .pdp-arrow-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #333;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .pdp-arrow-left { left: 0; }
+    .pdp-arrow-right { right: 0; }
+    
+    .pdp-zoom-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+    }
+    .pdp-page-num {
+      text-align: center;
+      margin-top: 6px;
+    }
+    .pdp-page-badge {
+      display: inline-block;
+      background: #eee;
+      color: #666;
+      font-size: 10px;
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    /* 価格 */
+    .pdp-price {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0 12px;
+    }
+    .pdp-price span {
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    /* カラーアイコン・グリッド */
+    .pdp-color-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      margin-bottom: 15px;
+    }
+    .pdp-color-box {
+      width: 100%;
+      aspect-ratio: 1;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .pdp-color-box.active {
+      border: 2px solid #4a1525;
+    }
+
+    /* 選択中仕様情報 */
+    .pdp-spec-table {
+      margin-bottom: 15px;
+      font-size: 12px;
+    }
+    .pdp-spec-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .pdp-spec-label {
+      background: #4a1525;
+      color: #fff;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-right: 10px;
+      white-space: nowrap;
+    }
+    .pdp-spec-btn-tag {
+      border: 1px solid #ccc;
+      color: #333;
+      font-size: 10px;
+      padding: 3px 12px;
+      border-radius: 2px;
+      margin-right: 10px;
+    }
+    .pdp-link-blue {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-size: 11px;
+    }
+
+    /* お子様の性別フォーム */
+    .pdp-gender-sec {
+      margin-bottom: 15px;
+    }
+    .pdp-gender-header {
+      background: #f7f5f3;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .pdp-req-badge {
+      background: #4a1525;
+      color: #fff;
+      font-size: 9px;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .pdp-gender-options {
+      display: flex;
+      gap: 10px;
+    }
+    .pdp-gender-btn {
+      flex: 1;
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 2px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    /* イニシャル刻印アコーディオン */
+    .pdp-initial-btn {
+      background: #ef8ea7;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    /* 注意書き */
+    .pdp-note-red {
+      color: #d93025;
+      font-size: 11px;
+      margin-bottom: 15px;
+    }
+
+    /* カートボタン */
+    .btn-add-cart {
+      background: #3b0e1a;
+      color: #fff;
+      width: 100%;
+      padding: 14px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* サブアクションボタン（2列） */
+    .pdp-sub-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+    .btn-sub-act {
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 8px;
+      text-align: center;
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* 中略セクション */
+    .pdp-omitted-sec {
+      background: #e5e5e5;
+      color: #222;
+      text-align: center;
+      padding: 40px 0;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      margin: 20px 0 30px;
+    }
+
+    /* レビューセクション用CSS */
+    #figma-customer-reviews {
+      padding: 20px 0;
+      background: #fff;
+    }
+    .figma-rv-title-area {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .figma-rv-main-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #4a2b27;
+      margin: 0;
+      letter-spacing: 0.05em;
+    }
+    .figma-rv-sub-title {
+      font-size: 9px;
+      color: #888;
+      letter-spacing: 0.15em;
+      margin-top: 2px;
+    }
+    .figma-rv-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+    .figma-rv-stars-gold {
+      color: #611822;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .figma-rv-score {
+      font-weight: bold;
+      margin: 0 4px;
+      color: #333;
+    }
+    .figma-rv-count-link, .figma-rv-write-link {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .figma-rv-card {
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .figma-rv-card-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #222;
+    }
+    .figma-rv-card-stars {
+      color: #611822;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .figma-rv-color {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .figma-rv-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .figma-rv-toggle-btn {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .figma-rv-gallery {
+      display: flex;
+      gap: 6px;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+    .figma-rv-thumb-wrap {
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .figma-rv-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .figma-rv-user-info {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+    .figma-rv-footer-link {
+      text-align: right;
+      margin-top: 10px;
+    }
+    .figma-rv-footer-link a {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="ikd-header">
+    <div class="ikd-logo">池田屋ランドセル</div>
+    <div class="ikd-header-nav">
+      <div>店舗一覧</div>
+      <div>カート</div>
+      <div>メニュー</div>
+    </div>
+  </header>
+
+  <div class="pdp-container">
+    
+    <!-- パンくずリスト -->
+    <div class="pdp-breadcrumb">
+      <a href="#">池田屋ランドセル【公式通販】</a> &gt; <a href="#">ランドセルを選ぶ</a> &gt; No.59
+    </div>
+
+    <!-- 商品名 -->
+    <h1 class="pdp-title">No.59 防水クラリーノ ベーシック カラーコンビ</h1>
+
+    <!-- スコア・件数リンク -->
+    <div class="pdp-rating-top">
+      <span class="pdp-stars">★★★★☆</span>
+      <span style="font-weight: bold;">4.6</span>
+      <a href="#figma-customer-reviews" class="pdp-rating-count">(999+)</a>
+    </div>
+
+    <!-- メイン商品画像エリア -->
+    <div class="pdp-image-area">
+      <span class="pdp-arrow-left">&lt;</span>
+      <img src="https://www.pikachan.com/uploads/prclass/59pbxpl_01.webp" alt="ランドセル画像" class="pdp-main-img" id="main-product-img">
+      <span class="pdp-arrow-right">&gt;</span>
+      <div class="pdp-zoom-btn">🔍</div>
+      <div class="pdp-page-num"><span class="pdp-page-badge">1 / 8</span></div>
+    </div>
+
+    <!-- 価格 -->
+    <div class="pdp-price">¥64,000 <span>(税込)</span></div>
+
+    <!-- カラーアイコン・グリッド -->
+    <div class="pdp-color-grid">
+      <div class="pdp-color-box active" style="background: linear-gradient(135deg, #b0d4ff 50%, #e3d2ff 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #b0d4ff 50%, #f7f5f0 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #c7e0c4 50%, #f7f5f0 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #fce9a6 50%, #f7f5f0 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #ffb6c1 50%, #f7f5f0 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #e3d2ff 50%, #ffc0cb 50%);"></div>
+      
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #ff407d 50%, #ffc0cb 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #1b4998 50%, #72c6ef 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #ff8c00 50%, #fce9a6 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #8a2be2 50%, #000000 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #701328 50%, #e3d2ff 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #1b263b 50%, #5c4033 50%);"></div>
+
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #2d5a27 50%, #5c4033 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #e3d2ff 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #8a2be2 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #ff8c00 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #fce9a6 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #ffd700 50%);"></div>
+
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #2d5a27 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #ff0000 50%);"></div>
+      <div class="pdp-color-box" style="background: linear-gradient(135deg, #000000 50%, #1b4998 50%);"></div>
+    </div>
+
+    <!-- 選択中仕様情報 -->
+    <div class="pdp-spec-table">
+      <div class="pdp-spec-row">
+        <span class="pdp-spec-label">選択カラー</span>
+        <span>ペールブルー×ペールラベンダー</span>
+      </div>
+      <div class="pdp-spec-row">
+        <span class="pdp-spec-btn-tag">在庫状態</span>
+        <span>注文可</span>
+      </div>
+      <div class="pdp-spec-row" style="align-items: flex-start;">
+        <span class="pdp-spec-btn-tag">お届け日目安</span>
+        <div>
+          仕上がり次第順次発送（最終納期：2027年3月末）<br>
+          <a href="#" class="pdp-link-blue">送料について</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- お子様の性別選択 -->
+    <div class="pdp-gender-sec">
+      <div class="pdp-gender-header">
+        お子様の性別 <span class="pdp-req-badge">必須</span>
+      </div>
+      <div class="pdp-gender-options">
+        <label class="pdp-gender-btn"><input type="radio" name="gender" value="boy"> 男の子</label>
+        <label class="pdp-gender-btn"><input type="radio" name="gender" value="girl"> 女の子</label>
+      </div>
+    </div>
+
+    <!-- イニシャル刻印アコーディオンボタン -->
+    <div class="pdp-initial-btn">
+      イニシャル刻印の入力はこちら ＋
+    </div>
+
+    <!-- 注意書き -->
+    <div class="pdp-note-red">
+      ※こちらは2027年度ご入学用の商品です。
+    </div>
+
+    <!-- カートに入れるボタン -->
+    <button class="btn-add-cart">
+      🛒 カートに入れる
+    </button>
+
+    <!-- サブ機能ボタン（4つ） -->
+    <div class="pdp-sub-actions">
+      <div class="btn-sub-act">♡ お気に入り</div>
+      <div class="btn-sub-act">レンタルで試着する</div>
+      <div class="btn-sub-act">店舗で試着する</div>
+      <div class="btn-sub-act">展示会で試着する</div>
+    </div>
+
+    <!-- ===== 中略セクション 1 ===== -->
+    <div class="pdp-omitted-sec">
+      中略
+    </div>
+
+    <!-- ===== 商品レビューセクション ===== -->
+    <section id="figma-customer-reviews">
+      <!-- ヘッダータイトル -->
+      <div class="figma-rv-title-area">
+        <h2 class="figma-rv-main-title">商品レビュー</h2>
+        <div class="figma-rv-sub-title">REVIEWS</div>
+      </div>
+
+      <!-- サマリーバー -->
+      <div class="figma-rv-summary">
+        <div>
+          <span class="figma-rv-stars-gold">★★★★★</span>
+          <span class="figma-rv-score">4.6</span>
+          <a href="#all-reviews" class="figma-rv-count-link">(999+)</a>
+        </div>
+        <div>
+          <span class="figma-rv-write-link">レビューを書く</span>
+        </div>
+      </div>
+
+      <!-- レビューカード 1 -->
+      <div class="figma-rv-card">
+        <div class="figma-rv-card-title">お気に入りのおしゃれなランドセル</div>
+        <div class="figma-rv-card-stars">★★★★☆</div>
+        <div class="figma-rv-color">購入カラー：ラベンダー×ベビーピンク</div>
+        <div class="figma-rv-text">
+          お気に入りの素敵なランドセルと 1年生のスタート。毎日6年間共に。荷物の多い日も少ない日も支えてね。毎日このお気に入りの…
+        </div>
+        <span class="figma-rv-toggle-btn" onclick="toggleText(this)">もっと見る</span>
+
+        <div class="figma-rv-user-info">
+          愛知県 A.S 女の子<br>
+          2026/04/30 13:00
+        </div>
+      </div>
+
+      <!-- レビューカード 2 -->
+      <div class="figma-rv-card">
+        <div class="figma-rv-card-title">お気に入りのおしゃれなランドセル</div>
+        <div class="figma-rv-card-stars">★★★★☆</div>
+        <div class="figma-rv-color">購入カラー：ラベンダー×ベビーピンク</div>
+        <div class="figma-rv-text">
+          お気に入りの素敵なランドセルと 1年生のスタート。毎日6年間共に。荷物の多い日も少ない日も支えてね。毎日このお気に入りの…
+        </div>
+        <span class="figma-rv-toggle-btn" onclick="toggleText(this)">もっと見る</span>
+
+        <div class="figma-rv-user-info">
+          爱知県 A.S 女の子<br>
+          2026/04/30 13:00
+        </div>
+      </div>
+
+      <!-- レビューカード 3（元の画像パスに戻したもの） -->
+      <div class="figma-rv-card">
+        <div class="figma-rv-card-title">お気に入りのおしゃれなランドセル</div>
+        <div class="figma-rv-card-stars">★★★★☆</div>
+        <div class="figma-rv-color">購入カラー：ラベンダー×ベビーピンク</div>
+        <div class="figma-rv-text">
+          お気に入りの素敵なランドセルと 1年生のスタート。毎日6年間共に。荷物の多い日も少ない日も支えてね。毎日このお気に入りのランドセルを背負って小学校に行けるのがとっても楽しみ。
+        </div>
+        <span class="figma-rv-toggle-btn" onclick="toggleText(this)">一部のみ表示</span>
+
+        <!-- 写真ギャラリー -->
+        <div class="figma-rv-gallery">
+          <div class="figma-rv-thumb-wrap">
+            <img src="/uploads/minkoe/52e0b8ea9bcd551ac23a8ee8b0770b98cfa75bdfb835b48c267ff0629adb3ccd.jpg" alt="レビュー写真1">
+          </div>
+          <div class="figma-rv-thumb-wrap">
+            <img src="/uploads/minkoe/52e0b8ea9bcd551ac23a8ee8b0770b98cfa75bdfb835b48c267ff0629adb3ccd.jpg" alt="レビュー写真2">
+          </div>
+          <div class="figma-rv-thumb-wrap">
+            <img src="/uploads/minkoe/52e0b8ea9bcd551ac23a8ee8b0770b98cfa75bdfb835b48c267ff0629adb3ccd.jpg" alt="レビュー写真3">
+          </div>
+        </div>
+
+        <div class="figma-rv-user-info">
+          愛知県 A.S 女の子<br>
+          2026/04/30 13:00
+        </div>
+      </div>
+
+      <!-- 全体リンク -->
+      <div class="figma-rv-footer-link">
+        <a href="#all-reviews">すべてのレビューを見る</a>
+      </div>
+    </section>
+
+    <!-- ===== 以下略セクション ===== -->
+    <div class="pdp-omitted-sec">
+      以下略
+    </div>
+
+  </div>
+
+  <script>
+    function toggleText(btn) {
+      if (btn.innerText === "もっと見る") {
+        btn.innerText = "一部のみ表示";
+      } else {
+        btn.innerText = "もっと見る";
+      }
+    }
+  </script>
+</body>
+</html>

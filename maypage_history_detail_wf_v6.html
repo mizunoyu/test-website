@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購入履歴詳細｜池田屋ランドセル【公式通販】</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      background-color: #f7f5f3;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 共通ヘッダー（ボルドー） */
+    .ikd-header {
+      background-color: #4a1525;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ikd-logo {
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 4px 10px;
+      border-radius: 15px;
+    }
+    .ikd-header-nav {
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* コンテナ */
+    .mypage-container {
+      max-width: 650px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 24px;
+      min-height: 100vh;
+      border-left: 1px solid #e0dedc;
+      border-right: 1px solid #e0dedc;
+    }
+
+    /* パンくず */
+    .mypage-breadcrumb {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* ページタイトル */
+    .mypage-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+      text-align: center;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    /* 会員名 ＆ 退会・ログアウトリンク */
+    .mypage-user-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .mypage-user-name {
+      font-weight: bold;
+      color: #222;
+    }
+    .mypage-user-links {
+      font-size: 11px;
+    }
+    .mypage-user-links a {
+      color: #3b82f6;
+      text-decoration: underline;
+      margin-left: 12px;
+    }
+
+    /* マイページ 6分割メニュー */
+    .mypage-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+    .menu-btn {
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 12px;
+      border: 1px solid #4a1525;
+      background: #fff;
+      color: #4a1525;
+      font-weight: 500;
+      border-radius: 2px;
+    }
+    .menu-btn.active {
+      background: #4a1525;
+      color: #fff;
+    }
+
+    /* セクションヘッダー */
+    .section-header {
+      background: #eee;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    /* 注文詳細ボックス */
+    .order-detail-box {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 24px;
+      background: #fff;
+    }
+    .order-info-row {
+      display: flex;
+      font-size: 12px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .order-info-label {
+      width: 130px;
+      color: #666;
+      flex-shrink: 0;
+    }
+    .order-info-val {
+      flex: 1;
+      color: #333;
+    }
+
+    /* 商品カード */
+    .order-item-card {
+      border-top: 1px solid #ddd;
+      padding-top: 16px;
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .item-thumb {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      border: 1px solid #eee;
+      background: #f9f9f9;
+    }
+    .item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .item-content {
+      flex: 1;
+    }
+    .item-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+    }
+    .item-spec {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    /* レビュー投稿ボタン（商品ごと）＆ 鉛筆アイコン */
+    .btn-review-write {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #611822;
+      color: #fff;
+      text-align: center;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-review-write:hover {
+      background: #4a1525;
+    }
+    .pencil-icon-svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* 合計金額エリア */
+    .order-total-area {
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+      margin-top: 16px;
+      font-size: 13px;
+      text-align: right;
+    }
+    .order-total-price {
+      font-size: 15px;
+      font-weight: bold;
+      color: #611822;
+    }
+
+    /* 戻るボタン */
+    .btn-back {
+      display: block;
+      width: 180px;
+      margin: 0 auto;
+      background: #3b0e1a;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .mypage-menu-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="ikd-header">
+    <div class="ikd-logo">池田屋ランドセル</div>
+    <div class="ikd-header-nav">
+      <div>店舗一覧</div>
+      <div>カート</div>
+      <div>メニュー</div>
+    </div>
+  </header>
+
+  <div class="mypage-container">
+    
+    <!-- パンくず -->
+    <div class="mypage-breadcrumb">
+      池田屋ランドセル【公式通販】 &gt; マイページ
+    </div>
+
+    <!-- タイトル -->
+    <h1 class="mypage-title">購入履歴</h1>
+
+    <!-- ユーザー名 ＆ 退会・ログアウト -->
+    <div class="mypage-user-header">
+      <div class="mypage-user-name">お名前 太郎さん</div>
+      <div class="mypage-user-links">
+        <a href="#">退会手続き</a>
+        <a href="#">ログアウト</a>
+      </div>
+    </div>
+
+    <!-- マイページ 6分割メニュー（購入履歴がアクティブ） -->
+    <div class="mypage-menu-grid">
+      <div class="menu-btn">お気に入り</div>
+      <div class="menu-btn active">購入履歴</div>
+      <div class="menu-btn">会員情報</div>
+      <div class="menu-btn">お届け先追加・変更</div>
+      <div class="menu-btn">みんなの声と写真</div>
+      <div class="menu-btn">再入荷通知</div>
+    </div>
+
+    <!-- 購入履歴詳細セクション -->
+    <div class="section-header">購入履歴詳細</div>
+
+    <div class="order-detail-box">
+      <div class="order-info-row">
+        <div class="order-info-label">購入日時</div>
+        <div class="order-info-val">2025-01-23 14:26:09</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">注文番号</div>
+        <div class="order-info-val">20250123142608534</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">注文状況</div>
+        <div class="order-info-val">納品受付</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">店舗</div>
+        <div class="order-info-val">ネットショップ</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">お名前</div>
+        <div class="order-info-val">テスト テスト</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">お名前(フリガナ)</div>
+        <div class="order-info-val">テスト テスト</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">郵便番号</div>
+        <div class="order-info-val">〒420-0031</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">住所</div>
+        <div class="order-info-val">静岡県静岡市葵区呉服町テスト</div>
+      </div>
+      <div class="order-info-row">
+        <div class="order-info-label">電話番号</div>
+        <div class="order-info-val">0120-111-222</div>
+      </div>
+
+      <!-- 商品1つ目 -->
+      <div class="order-item-card">
+        <div class="item-thumb">
+          <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="商品画像">
+        </div>
+        <div class="item-content">
+          <div class="item-title">【レンタル】No.59 防水牛革プレミアム カラーコンビ</div>
+          <div class="item-spec">
+            ラベンダー×ミルク<br>
+            商品コード：RENTAL_01_009_LVMK<br>
+            金額：2,000円 (税込) / 数量：1
+          </div>
+          <!-- 鉛筆アイコン付きレビュー投稿ボタン -->
+          <button class="btn-review-write" onclick="location.href='review_write.html?item=1'">
+            <svg class="pencil-icon-svg" viewBox="0 0 24 24">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+            </svg>
+            この商品のレビューを書く
+          </button>
+        </div>
+      </div>
+
+      <!-- 商品2つ目 -->
+      <div class="order-item-card">
+        <div class="item-thumb">
+          <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="商品画像">
+        </div>
+        <div class="item-content">
+          <div class="item-title">【レンタル】No.59 防水牛革プレミアム カラーコンビ</div>
+          <div class="item-spec">
+            ミント×キャメル<br>
+            商品コード：RENTAL_01_009_MTXM<br>
+            金額：2,000円 (税込) / 数量：1
+          </div>
+          <!-- 鉛筆アイコン付きレビュー投稿ボタン -->
+          <button class="btn-review-write" onclick="location.href='review_write.html?item=2'">
+            <svg class="pencil-icon-svg" viewBox="0 0 24 24">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+            </svg>
+            この商品のレビューを書く
+          </button>
+        </div>
+      </div>
+
+      <!-- 合計金額 -->
+      <div class="order-total-area">
+        送料：0円<br>
+        合計金額：<span class="order-total-price">4,000円 (税込)</span>
+      </div>
+    </div>
+
+    <!-- 一覧へ戻るボタン -->
+    <a href="#" class="btn-back">一覧へ戻る</a>
+
+  </div>
+
+</body>
+</html>

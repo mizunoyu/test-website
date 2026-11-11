@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品レビューの投稿｜池田屋ランドセル【公式通販】</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      background-color: #f7f5f3;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 共通ヘッダー（ボルドー） */
+    .ikd-header {
+      background-color: #4a1525;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ikd-logo {
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 4px 10px;
+      border-radius: 15px;
+    }
+    .ikd-header-nav {
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* コンテナ */
+    .review-container {
+      max-width: 650px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e0dedc;
+    }
+
+    /* パンくず */
+    .review-breadcrumb {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* ページタイトル */
+    .review-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a1525;
+      text-align: center;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #4a1525;
+      padding-bottom: 10px;
+    }
+
+    /* 対象商品確認エリア */
+    .target-product-box {
+      display: flex;
+      gap: 12px;
+      background: #faf7f5;
+      border: 1px solid #e5dfd9;
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+    .target-thumb {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+    .target-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .target-info h2 {
+      font-size: 13px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+    }
+    .target-info p {
+      font-size: 11px;
+      color: #555;
+    }
+
+    /* フォーム全体 */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .required-tag {
+      background: #611822;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .optional-tag {
+      background: #888;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #fff;
+    }
+    .form-textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .form-help-text {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    /* 評価（星5段階）セレクター */
+    .star-rating-select {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 24px;
+    }
+    .star-rating-select input {
+      display: none;
+    }
+    .star-rating-select label {
+      color: #ccc;
+      cursor: pointer;
+    }
+    .star-rating-select input:checked ~ label,
+    .star-rating-select label:hover,
+    .star-rating-select label:hover ~ label {
+      color: #611822;
+    }
+
+    /* チェックボックスグループ */
+    .checkbox-group {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    /* ファイルアップロード */
+    .file-upload-box {
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+      background: #fafafa;
+      cursor: pointer;
+    }
+    .file-upload-box:hover {
+      background: #f0f0f0;
+    }
+
+    /* ==========================================
+       【商品レビューの規約エリア】
+       ========================================== */
+    .review-policy-box {
+      background: #faf7f5;
+      border: 1px solid #e5dfd9;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .policy-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #4a1525;
+      margin-bottom: 8px;
+    }
+    .policy-scroll-area {
+      max-height: 110px;
+      overflow-y: auto;
+      font-size: 11px;
+      color: #555;
+      line-height: 1.6;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .policy-scroll-area p {
+      margin-bottom: 6px;
+    }
+    .policy-agree-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* ボタンエリア */
+    .form-action-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .btn-submit {
+      flex: 1;
+      background: #611822;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-submit:hover {
+      background: #4a1525;
+    }
+    .btn-cancel {
+      flex: 1;
+      background: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-cancel:hover {
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="ikd-header">
+    <div class="ikd-logo">池田屋ランドセル</div>
+    <div class="ikd-header-nav">
+      <div>店舗一覧</div>
+      <div>カート</div>
+      <div>メニュー</div>
+    </div>
+  </header>
+
+  <div class="review-container">
+    
+    <!-- パンくずリスト -->
+    <div class="review-breadcrumb">
+      マイページ &gt; 購入履歴 &gt; 商品レビューの投稿
+    </div>
+
+    <h1 class="review-title">商品レビューの投稿</h1>
+
+    <!-- 対象商品確認エリア -->
+    <div class="target-product-box">
+      <div class="target-thumb">
+        <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="商品サムネイル">
+      </div>
+      <div class="target-info">
+        <h2>【レンタル】No.59 防水牛革プレミアム カラーコンビ</h2>
+        <p>カラー：ラベンダー×ミルク ｜ 数量：1</p>
+      </div>
+    </div>
+
+    <!-- レビュー投稿フォーム -->
+    <form action="review_complete.html" method="POST">
+
+      <!-- 評価（必須） -->
+      <div class="form-group">
+        <label class="form-label">評価（満足度）<span class="required-tag">必須</span></label>
+        <div class="star-rating-select">
+          <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+          <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+          <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+          <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+          <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+        </div>
+      </div>
+
+      <!-- タイトル（必須） -->
+      <div class="form-group">
+        <label class="form-label" for="review-title">タイトル<span class="required-tag">必須</span></label>
+        <input type="text" id="review-title" class="form-input" placeholder="例：軽くてデザインも大満足です！" required>
+      </div>
+
+      <!-- レビュー本文（必須） -->
+      <div class="form-group">
+        <label class="form-label" for="review-body">レビュー本文<span class="required-tag">必須</span></label>
+        <textarea id="review-body" class="form-textarea" placeholder="商品の使い心地や、選んだ決め手などを自由にお書きください。" required></textarea>
+      </div>
+
+      <!-- ニックネーム（任意） -->
+      <div class="form-group">
+        <label class="form-label" for="nickname">ニックネーム<span class="optional-tag">任意</span></label>
+        <input type="text" id="nickname" class="form-input" placeholder="未入力の場合は「購入者様」と表示されます">
+      </div>
+
+      <!-- 子供の性別（任意） -->
+      <div class="form-group">
+        <label class="form-label">お子様の性別<span class="optional-tag">任意</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" name="gender" value="boy"> 男の子</label>
+          <label class="checkbox-label"><input type="checkbox" name="gender" value="girl"> 女の子</label>
+        </div>
+      </div>
+
+      <!-- 子供の身長（任意：ランドセル購入時のみ表示） -->
+      <div class="form-group landseal-only-item">
+        <label class="form-label" for="child-height">お子様の身長<span class="optional-tag">任意</span></label>
+        <select id="child-height" class="form-select">
+          <option value="">選択してください</option>
+          <option value="100以下">100cm以下</option>
+          <option value="101-105">101〜105cm</option>
+          <option value="106-110">106〜110cm</option>
+          <option value="111-115">111〜115cm</option>
+          <option value="116-120">116〜120cm</option>
+          <option value="121以上">121cm以上</option>
+        </select>
+      </div>
+
+      <!-- 小学校入学年度（任意：ランドセル購入時のみ表示） -->
+      <div class="form-group landseal-only-item">
+        <label class="form-label" for="admission-year">小学校入学年度<span class="optional-tag">任意</span></label>
+        <select id="admission-year" class="form-select">
+          <option value="">選択してください</option>
+          <option value="2027">2027年度</option>
+          <option value="2026">2026年度</option>
+          <option value="2025">2025年度</option>
+          <option value="2024">2024年度</option>
+          <option value="2023">2023年度</option>
+        </select>
+      </div>
+
+      <!-- 画像の添付（任意：最大5件、1ファイル10MBまで） -->
+      <div class="form-group">
+        <label class="form-label">画像の添付<span class="optional-tag">任意</span></label>
+        <div class="file-upload-box" onclick="document.getElementById('file-input').click()">
+          <p style="font-size: 12px; color: #555; margin-bottom: 4px;">📁 クリックしてファイルを選択、またはここにドラッグ＆ドロップ</p>
+          <p class="form-help-text">最大5件まで、1ファイル10MBまで（JPEG, PNG等）</p>
+          <input type="file" id="file-input" style="display: none;" multiple accept="image/*">
+        </div>
+      </div>
+
+      <!-- ========================================================
+         【商品レビューの規約エリア】
+         ======================================================== -->
+      <div class="form-group">
+        <label class="form-label">商品レビューの規約<span class="required-tag">必須</span></label>
+        
+        <div class="review-policy-box">
+          <div class="policy-title">商品レビュー投稿利用規約</div>
+          
+          <div class="policy-scroll-area">
+            <p><strong>第1条（目的）</strong><br>本規約は、株式会社池田屋（以下「当社」）が提供する商品レビュー投稿サービスにおける条件および注意事項を定めるものです。</p>
+            <p><strong>第2条（投稿内容に関する注意事項）</strong><br>レビューの投稿にあたっては、以下の内容を含まないようご注意ください。万一該当すると当社が判断した場合、予告なく非公開または削除する場合があります。</p>
+            <p>1. 法令、公序良俗に反する内容、またはそのおそれのある内容。<br>
+               2. 個人情報（氏名、電話番号、住所、メールアドレス等）が含まれる内容。<br>
+               3. 他のお客様、当社、または第三者を誹謗中傷し、または名誉・信用を傷つける表現。<br>
+               4. 営利目的の宣伝、勧誘、特定の政治・宗教活動、またはアフィリエイト等を目的とした内容。<br>
+               5. 当社や第三者の著作権、商標権、プライバシー権等の権利を侵害する内容。<br>
+               6. 事実と異なる内容や、購入した商品に関係のない内容。<br>
+               7. その他、運営上不適切と当社が判断した内容。</p>
+            <p><strong>第3条（投稿内容の権利および利用）</strong><br>投稿されたレビューの著作権はユーザーに帰属しますが、投稿を行った時点で、当社が当該内容を国内外で無償かつ非独占的に利用（複製、公開、転載等）することに同意したものとみなします。</p>
+          </div>
+
+          <label class="policy-agree-wrap">
+            <input type="checkbox" name="agree_policy" value="1" required>
+            上記「商品レビュー投稿利用規約」に同意して投稿します
+          </label>
+        </div>
+      </div>
+
+      <!-- 送信ボタンエリア -->
+      <div class="form-action-buttons">
+        <button type="submit" class="btn-submit">確認画面へ進む</button>
+        <button type="button" class="btn-cancel" onclick="history.back()">キャンセル</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</body>
+</html>

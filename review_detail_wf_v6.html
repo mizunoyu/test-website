@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No.59 防水クラリーノ ベーシック カラーコンビの商品レビュー</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      background-color: #fff;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 全体コンテナ（PC最大幅 950px） */
+    .rv-page-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      position: relative;
+    }
+
+    /* ページヘッダー */
+    .rv-header-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a1525;
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #4a1525;
+    }
+
+    /* メインレイアウト */
+    .rv-main-layout {
+      display: flex;
+      gap: 30px;
+      position: relative;
+    }
+
+    /* 総合評価・星別割合サマリーエリア */
+    .rv-summary-box {
+      background: #faf7f5;
+      border: 1px solid #e5dfd9;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .rv-summary-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .rv-score-num {
+      font-size: 40px;
+      font-weight: bold;
+      color: #611822;
+      line-height: 1;
+    }
+    .rv-stars-gold {
+      color: #611822;
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+    .rv-total-count {
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* バーチャート */
+    .rv-bars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .rv-bar-row {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #555;
+      gap: 10px;
+    }
+    .rv-bar-label {
+      width: 28px;
+    }
+    .rv-bar-bg {
+      flex: 1;
+      height: 8px;
+      background: #e0dedc;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .rv-bar-fill {
+      height: 100%;
+      background: #611822;
+      border-radius: 4px;
+    }
+    .rv-bar-val {
+      width: 70px;
+      text-align: right;
+    }
+
+    /* ========================================================= */
+    /* コントロールバー */
+    /* ========================================================= */
+    .rv-control-bar {
+      padding: 14px 0;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+
+    /* 551px以上：全要素を横1列に整列 */
+    @media (min-width: 551px) {
+      .rv-control-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+      }
+      .rv-control-header-line {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .rv-control-count {
+        font-weight: bold;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+      .rv-control-selects {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: nowrap;
+      }
+      .rv-control-selects label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        font-size: 12px;
+      }
+      .rv-control-bar select {
+        padding: 5px 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 12px;
+        background: #fff;
+        color: #333;
+      }
+    }
+
+    /* 絞り込みボタン（SVGファンネルアイコン付き） */
+    .rv-btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: #333;
+      font-weight: 500;
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: #fff;
+      white-space: nowrap;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .rv-btn-action:hover {
+      background: #f5f5f5;
+    }
+    .filter-icon-svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ★550px以下：1行目に「件数（左）＋絞り込み（右端）」、2行目に「並べ替え＋表示件数」★ */
+    @media (max-width: 550px) {
+      .rv-control-top-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .rv-control-header-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      .rv-control-count {
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .rv-control-selects {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+      }
+      .rv-control-selects label {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 11px;
+      }
+      .rv-control-selects select {
+        width: 100%;
+        padding: 6px 4px;
+        font-size: 11px;
+      }
+    }
+
+    /* レビューカード */
+    .rv-content-area {
+      flex: 1;
+      min-width: 0;
+    }
+    .rv-card {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .rv-card-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #222;
+    }
+    .rv-card-stars {
+      color: #611822;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .rv-card-spec {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .rv-card-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .rv-toggle-btn {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .rv-user-info {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+
+    /* ページネーション */
+    .rv-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 30px 0 20px;
+    }
+    .rv-page-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #333;
+      cursor: pointer;
+    }
+    .rv-page-item.active {
+      background: #4a1525;
+      color: #fff;
+      border-color: #4a1525;
+    }
+
+    /* 下部アクションボタン */
+    .rv-bottom-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-bottom {
+      flex: 1;
+      padding: 12px;
+      border-radius: 24px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-bottom-dark {
+      background: #000;
+      color: #fff;
+    }
+    .btn-bottom-outline {
+      border: 1px solid #333;
+      background: #fff;
+      color: #333;
+    }
+
+    /* 絞り込みオーバーレイ＆パネル */
+    .filter-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .filter-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .filter-panel {
+      position: fixed;
+      background: #fff;
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* PCインライン（960px以上） */
+    @media (min-width: 960px) {
+      .filter-overlay { display: none !important; }
+      .filter-panel {
+        position: relative;
+        width: 280px;
+        flex-shrink: 0;
+        border: 1px solid #e5dfd9;
+        border-radius: 8px;
+        box-shadow: none;
+        display: none;
+        height: fit-content;
+      }
+      .filter-panel.active-pc {
+        display: flex;
+      }
+    }
+
+    /* タブレット（600px 〜 959px）：左からフェードイン */
+    @media (min-width: 600px) and (max-width: 959px) {
+      .filter-panel {
+        top: 0; left: 0;
+        width: 380px;
+        height: 100vh;
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      .filter-overlay.active .filter-panel {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* モバイル（599px以下）：下からスライド・フェードイン */
+    @media (max-width: 599px) {
+      .filter-panel {
+        bottom: 0; left: 0;
+        width: 100%;
+        height: 85vh;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      .filter-overlay.active .filter-panel {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .filter-header-row {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .filter-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .filter-close-btn {
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+    .filter-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .applied-filters-sec {
+      margin-bottom: 16px;
+      display: none;
+    }
+    .applied-filters-sec.show {
+      display: block;
+    }
+    .applied-tag-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .applied-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #ccc;
+      border-radius: 16px;
+      padding: 4px 10px;
+      font-size: 11px;
+      background: #f9f9f9;
+    }
+    .reset-all-link {
+      font-size: 12px;
+      color: #3b82f6;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .filter-group {
+      border-bottom: 1px solid #eee;
+      padding: 14px 0;
+    }
+    .filter-group-header {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    .filter-options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .filter-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .filter-footer {
+      padding: 16px;
+      border-top: 1px solid #eee;
+      background: #fff;
+    }
+    .btn-submit-filter {
+      width: 100%;
+      background: #000;
+      color: #fff;
+      padding: 14px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rv-page-container">
+
+    <!-- ページタイトル -->
+    <h1 class="rv-header-title">No.59 防水クラリーノ ベーシック カラーコンビの商品レビュー</h1>
+
+    <!-- 評価サマリー -->
+    <div class="rv-summary-box">
+      <div class="rv-summary-top">
+        <div class="rv-score-num">4.6</div>
+        <div>
+          <div class="rv-stars-gold">★★★★★</div>
+          <div class="rv-total-count">全 2,639 件</div>
+        </div>
+      </div>
+      <div class="rv-bars-list">
+        <div class="rv-bar-row">
+          <span class="rv-bar-label">★5</span>
+          <div class="rv-bar-bg"><div class="rv-bar-fill" style="width: 75%;"></div></div>
+          <span class="rv-bar-val">75% (1,979)</span>
+        </div>
+        <div class="rv-bar-row">
+          <span class="rv-bar-label">★4</span>
+          <div class="rv-bar-bg"><div class="rv-bar-fill" style="width: 18%;"></div></div>
+          <span class="rv-bar-val">18% (475)</span>
+        </div>
+        <div class="rv-bar-row">
+          <span class="rv-bar-label">★3</span>
+          <div class="rv-bar-bg"><div class="rv-bar-fill" style="width: 5%;"></div></div>
+          <span class="rv-bar-val">5% (131)</span>
+        </div>
+        <div class="rv-bar-row">
+          <span class="rv-bar-label">★2</span>
+          <div class="rv-bar-bg"><div class="rv-bar-fill" style="width: 1.5%;"></div></div>
+          <span class="rv-bar-val">1.5% (40)</span>
+        </div>
+        <div class="rv-bar-row">
+          <span class="rv-bar-label">★1</span>
+          <div class="rv-bar-bg"><div class="rv-bar-fill" style="width: 0.5%;"></div></div>
+          <span class="rv-bar-val">0.5% (14)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- コントロールバー（モバイル時：件数＆絞り込みが上段、プルダウンが下段） -->
+    <div class="rv-control-bar">
+      <div class="rv-control-top-row">
+        
+        <!-- 1行目（550px以下では左右配置、551px以上では左寄りにインライン配置） -->
+        <div class="rv-control-header-line">
+          <div class="rv-control-count">2,639 件</div>
+          
+          <!-- 550px以下で件数の右端に表示される絞り込みボタン（551px以上では非表示にしてselect側でまとめて表示） -->
+          <div class="rv-btn-action mobile-filter-btn" onclick="openFilterUI()">
+            <svg class="filter-icon-svg" viewBox="0 0 24 24">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            絞り込み
+          </div>
+        </div>
+
+        <!-- 2行目（プルダウン領域） -->
+        <div class="rv-control-selects">
+          <label>並べ替え:
+            <select id="sort-order">
+              <option value="newest" selected>投稿日時が新しい順</option>
+              <option value="high_score">評価の高い順</option>
+              <option value="low_score">評価の低い順</option>
+            </select>
+          </label>
+          <label>表示件数:
+            <select id="items-per-page">
+              <option value="10" selected>10件</option>
+              <option value="20">20件</option>
+              <option value="30">30件</option>
+            </select>
+          </label>
+
+          <!-- 551px以上で1行に収まる際の絞り込みボタン -->
+          <div class="rv-btn-action desktop-filter-btn" onclick="openFilterUI()">
+            <svg class="filter-icon-svg" viewBox="0 0 24 24">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            絞り込み
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      /* ボタンのレスポンシブ表示制御 */
+      @media (max-width: 550px) {
+        .desktop-filter-btn { display: none !important; }
+        .mobile-filter-btn { display: inline-flex !important; }
+      }
+      @media (min-width: 551px) {
+        .desktop-filter-btn { display: inline-flex !important; }
+        .mobile-filter-btn { display: none !important; }
+      }
+    </style>
+
+    <!-- メインレイアウト -->
+    <div class="rv-main-layout">
+
+      <!-- PC（960px以上）用インラインサイドバー -->
+      <div id="pc-filter-panel" class="filter-panel">
+        <div class="filter-header-row">
+          <div class="filter-title">絞り込み <span style="font-size: 12px; font-weight: normal; color: #666;">2,639 件</span></div>
+          <span class="filter-close-btn" onclick="closeFilterUI()">&times;</span>
+        </div>
+        <div class="filter-body">
+          <div id="applied-sec-pc" class="applied-filters-sec">
+            <div style="font-size: 12px; color: #666; font-weight: bold;">適用済みフィルター</div>
+            <div id="applied-tags-pc" class="applied-tag-wrap"></div>
+            <span class="reset-all-link" onclick="resetAllFilters()">すべての条件を解除</span>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-header">お客様の評価</div>
+            <div class="filter-options-stack">
+              <label class="filter-radio-label"><input type="radio" name="star_opt" value="5" onchange="onFilterChange()"> ★★★★★</label>
+              <label class="filter-radio-label"><input type="radio" name="star_opt" value="4" onchange="onFilterChange()"> ★★★★☆</label>
+              <label class="filter-radio-label"><input type="radio" name="star_opt" value="3" onchange="onFilterChange()"> ★★★☆☆</label>
+              <label class="filter-radio-label"><input type="radio" name="star_opt" value="2" onchange="onFilterChange()"> ★★☆☆☆</label>
+              <label class="filter-radio-label"><input type="radio" name="star_opt" value="1" onchange="onFilterChange()"> ★☆☆☆☆</label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-header">購入カラー</div>
+            <div class="filter-options-stack">
+              <label class="filter-radio-label"><input type="radio" name="color_opt" value="all" onchange="onFilterChange()"> 全て</label>
+              <label class="filter-radio-label"><input type="radio" name="color_opt" value="pale" onchange="onFilterChange()"> ペールブルー×ペールラベンダー</label>
+              <label class="filter-radio-label"><input type="radio" name="color_opt" value="black" onchange="onFilterChange()"> クロ×ゴールド</label>
+              <label class="filter-radio-label"><input type="radio" name="color_opt" value="mint" onchange="onFilterChange()"> ミント×ミルキー</label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-header">小学校入学年度</div>
+            <div class="filter-options-stack">
+              <label class="filter-radio-label"><input type="radio" name="year_opt" value="2027" onchange="onFilterChange()"> 2027年度ご入学（新1年生）</label>
+              <label class="filter-radio-label"><input type="radio" name="year_opt" value="2026" onchange="onFilterChange()"> 2026年度ご入学</label>
+            </div>
+          </div>
+        </div>
+        <div class="filter-footer">
+          <button class="btn-submit-filter" onclick="closeFilterUI()">絞り込む</button>
+        </div>
+      </div>
+
+      <!-- レビュー一覧 -->
+      <div class="rv-content-area">
+        <div id="review-list">
+          <div class="rv-card">
+            <div class="rv-card-title">お気に入りのおしゃれなランドセル</div>
+            <div class="rv-card-stars">★★★★☆</div>
+            <div class="rv-card-spec">購入カラー：ペールブルー×ペールラベンダー ｜ 2027年度ご入学</div>
+            <div class="rv-card-text">お気に入りの素敵なランドセルと 1年生のスタート。毎日6年間共に。荷物の多い日も少ない日も支えてね。毎日このお気に入りの…</div>
+            <span class="rv-toggle-btn" onclick="toggleText(this)">もっと見る</span>
+            <div class="rv-user-info">愛知県 A.S 女の子<br>2026/04/30 13:00</div>
+          </div>
+
+          <div class="rv-card">
+            <div class="rv-card-title">兄弟で池田屋さんにお世話になっています</div>
+            <div class="rv-card-stars">★★★★★</div>
+            <div class="rv-card-spec">購入カラー：クロ×ゴールド ｜ 2026年度ご入学</div>
+            <div class="rv-card-text">上の子の時も大変満足していたので、下の子も迷わず池田屋さんで購入しました。軽量で作りも非常にしっかりしています。</div>
+            <div class="rv-user-info">東京都 K.T 男の子<br>2026/04/28 10:15</div>
+          </div>
+        </div>
+
+        <!-- ページネーション -->
+        <div class="rv-pagination">
+          <div class="rv-page-item active">1</div>
+          <div class="rv-page-item">2</div>
+          <div class="rv-page-item">3</div>
+          <div class="rv-page-item">4</div>
+          <div class="rv-page-item">5</div>
+          <div class="rv-page-item">&gt;</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 下部ボタン -->
+    <div class="rv-bottom-actions">
+      <div class="btn-bottom btn-bottom-dark">レビューの投稿</div>
+      <a href="#" class="btn-bottom btn-bottom-outline">商品詳細へ戻る</a>
+    </div>
+
+  </div>
+
+  <!-- タブレット＆モバイル用 オーバーレイ ＋ フェードインパネル -->
+  <div id="filter-overlay" class="filter-overlay" onclick="onOverlayClick(event)">
+    <div class="filter-panel" onclick="event.stopPropagation()">
+      <div class="filter-header-row">
+        <div class="filter-title">絞り込み <span style="font-size: 12px; font-weight: normal; color: #666;">2,639 件</span></div>
+        <span class="filter-close-btn" onclick="closeFilterUI()">&times;</span>
+      </div>
+      <div class="filter-body">
+        <div id="applied-sec-mobile" class="applied-filters-sec">
+          <div style="font-size: 12px; color: #666; font-weight: bold;">適用済みフィルター</div>
+          <div id="applied-tags-mobile" class="applied-tag-wrap"></div>
+          <span class="reset-all-link" onclick="resetAllFilters()">すべての条件を解除</span>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-header">お客様の評価</div>
+          <div class="filter-options-stack">
+            <label class="filter-radio-label"><input type="radio" name="star_opt_m" value="5" onchange="onFilterChange()"> ★★★★★</label>
+            <label class="filter-radio-label"><input type="radio" name="star_opt_m" value="4" onchange="onFilterChange()"> ★★★★☆</label>
+            <label class="filter-radio-label"><input type="radio" name="star_opt_m" value="3" onchange="onFilterChange()"> ★★★☆☆</label>
+            <label class="filter-radio-label"><input type="radio" name="star_opt_m" value="2" onchange="onFilterChange()"> ★★☆☆☆</label>
+            <label class="filter-radio-label"><input type="radio" name="star_opt_m" value="1" onchange="onFilterChange()"> ★☆☆☆☆</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-header">購入カラー</div>
+          <div class="filter-options-stack">
+            <label class="filter-radio-label"><input type="radio" name="color_opt_m" value="all" onchange="onFilterChange()"> 全て</label>
+            <label class="filter-radio-label"><input type="radio" name="color_opt_m" value="pale" onchange="onFilterChange()"> ペールブルー×ペールラベンダー</label>
+            <label class="filter-radio-label"><input type="radio" name="color_opt_m" value="black" onchange="onFilterChange()"> クロ×ゴールド</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-header">小学校入学年度</div>
+          <div class="filter-options-stack">
+            <label class="filter-radio-label"><input type="radio" name="year_opt_m" value="2027" onchange="onFilterChange()"> 2027年度ご入学（新1年生）</label>
+            <label class="filter-radio-label"><input type="radio" name="year_opt_m" value="2026" onchange="onFilterChange()"> 2026年度ご入学</label>
+          </div>
+        </div>
+      </div>
+      <div class="filter-footer">
+        <button class="btn-submit-filter" onclick="closeFilterUI()">絞り込む</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openFilterUI() {
+      if (window.innerWidth >= 960) {
+        const pcPanel = document.getElementById('pc-filter-panel');
+        pcPanel.classList.toggle('active-pc');
+      } else {
+        const overlay = document.getElementById('filter-overlay');
+        overlay.classList.add('active');
+      }
+    }
+
+    function closeFilterUI() {
+      const pcPanel = document.getElementById('pc-filter-panel');
+      pcPanel.classList.remove('active-pc');
+      const overlay = document.getElementById('filter-overlay');
+      overlay.classList.remove('active');
+    }
+
+    function onOverlayClick(e) {
+      if (e.target.id === 'filter-overlay') {
+        closeFilterUI();
+      }
+    }
+
+    function onFilterChange() {
+      const checkedStar = document.querySelector('input[name="star_opt"]:checked') || document.querySelector('input[name="star_opt_m"]:checked');
+      const checkedColor = document.querySelector('input[name="color_opt"]:checked') || document.querySelector('input[name="color_opt_m"]:checked');
+
+      const secPc = document.getElementById('applied-sec-pc');
+      const secM = document.getElementById('applied-sec-mobile');
+      const tagsPc = document.getElementById('applied-tags-pc');
+      const tagsM = document.getElementById('applied-tags-mobile');
+
+      let tagsHTML = '';
+      if (checkedStar) {
+        tagsHTML += `<span class="applied-tag">評価: ★${checkedStar.value} ✕</span>`;
+      }
+      if (checkedColor && checkedColor.value !== 'all') {
+        tagsHTML += `<span class="applied-tag">カラー選択あり ✕</span>`;
+      }
+
+      if (tagsHTML !== '') {
+        secPc.classList.add('show');
+        secM.classList.add('show');
+        tagsPc.innerHTML = tagsHTML;
+        tagsM.innerHTML = tagsHTML;
+      } else {
+        secPc.classList.remove('show');
+        secM.classList.remove('show');
+      }
+    }
+
+    function resetAllFilters() {
+      const radios = document.querySelectorAll('input[type="radio"]');
+      radios.forEach(r => r.checked = false);
+      document.getElementById('applied-sec-pc').classList.remove('show');
+      document.getElementById('applied-sec-mobile').classList.remove('show');
+    }
+
+    function toggleText(btn) {
+      if (btn.innerText === "もっと見る") {
+        btn.innerText = "一部のみ表示";
+      } else {
+        btn.innerText = "もっと見る";
+      }
+    }
+  </script>
+</body>
+</html>

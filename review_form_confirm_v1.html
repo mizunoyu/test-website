@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品レビューの投稿確認｜池田屋ランドセル【公式通販】</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      background-color: #f7f5f3;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 共通ヘッダー（ボルドー） */
+    .ikd-header {
+      background-color: #4a1525;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ikd-logo {
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 4px 10px;
+      border-radius: 15px;
+    }
+    .ikd-header-nav {
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* コンテナ */
+    .review-container {
+      max-width: 650px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e0dedc;
+    }
+
+    /* パンくず */
+    .review-breadcrumb {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* ページタイトル */
+    .review-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a1525;
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #4a1525;
+      padding-bottom: 10px;
+    }
+
+    .confirm-lead {
+      font-size: 12px;
+      text-align: center;
+      color: #555;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* 対象商品確認エリア */
+    .target-product-box {
+      display: flex;
+      gap: 12px;
+      background: #faf7f5;
+      border: 1px solid #e5dfd9;
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+    .target-thumb {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+    .target-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .target-info h2 {
+      font-size: 13px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+    }
+    .target-info p {
+      font-size: 11px;
+      color: #555;
+    }
+
+    /* 確認項目リストテーブル風レイアウト */
+    .confirm-table {
+      border: 1px solid #e5dfd9;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .confirm-row {
+      display: flex;
+      border-bottom: 1px solid #e5dfd9;
+    }
+    .confirm-row:last-child {
+      border-bottom: none;
+    }
+    .confirm-label {
+      width: 140px;
+      background: #f9f6f3;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #4a1525;
+      flex-shrink: 0;
+    }
+    .confirm-value {
+      flex: 1;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #333;
+      background: #fff;
+      line-height: 1.6;
+      word-break: break-all;
+    }
+
+    /* 星評価のスタイル */
+    .stars-display {
+      color: #611822;
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    /* 添付画像確認エリア */
+    .confirm-thumbs-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .confirm-thumb-item {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      object-fit: cover;
+    }
+
+    /* ボタンエリア */
+    .form-action-buttons {
+      display: flex;
+      gap: 16px;
+    }
+    .btn-submit {
+      flex: 1;
+      background: #611822;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-submit:hover {
+      background: #4a1525;
+    }
+    .btn-back {
+      flex: 1;
+      background: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-back:hover {
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="ikd-header">
+    <div class="ikd-logo">池田屋ランドセル</div>
+    <div class="ikd-header-nav">
+      <div>店舗一覧</div>
+      <div>カート</div>
+      <div>メニュー</div>
+    </div>
+  </header>
+
+  <div class="review-container">
+    
+    <!-- パンくずリスト -->
+    <div class="review-breadcrumb">
+      マイページ &gt; 購入履歴 &gt; 商品レビューの投稿 &gt; 確認画面
+    </div>
+
+    <h1 class="review-title">商品レビューの投稿（確認）</h1>
+    <p class="confirm-lead">ご入力内容をご確認の上、「投稿する」ボタンを押してください。</p>
+
+    <!-- 対象商品確認エリア -->
+    <div class="target-product-box">
+      <div class="target-thumb">
+        <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="商品サムネイル">
+      </div>
+      <div class="target-info">
+        <h2>【レンタル】No.59 防水牛革プレミアム カラーコンビ</h2>
+        <p>カラー：ラベンダー×ミルク ｜ 数量：1</p>
+      </div>
+    </div>
+
+    <!-- 入力内容確認テーブル -->
+    <div class="confirm-table">
+      
+      <div class="confirm-row">
+        <div class="confirm-label">評価（満足度）</div>
+        <div class="confirm-value">
+          <span class="stars-display">★★★★★</span> (5 / 5)
+        </div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">タイトル</div>
+        <div class="confirm-value">軽くてデザインも大満足です！</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">レビュー本文</div>
+        <div class="confirm-value" style="white-space: pre-wrap;">実物をレンタルで試せたので、子どもが納得して色を選べました。届いたときからとても気に入って、背負いやすいと大喜びしています！</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">ニックネーム</div>
+        <div class="confirm-value">ゆいママ</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">お子様の性別</div>
+        <div class="confirm-value">女の子</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">お子様の身長</div>
+        <div class="confirm-value">101〜105cm</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">小学校入学年度</div>
+        <div class="confirm-value">2027年度</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="confirm-label">添付画像 (2件)</div>
+        <div class="confirm-value">
+          <div class="confirm-thumbs-wrap">
+            <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="添付画像1" class="confirm-thumb-item">
+            <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="添付画像2" class="confirm-thumb-item">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 送信・戻るボタンエリア -->
+    <form action="review_complete.html" method="POST">
+      <div class="form-action-buttons">
+        <button type="submit" class="btn-submit">投稿する</button>
+        <button type="button" class="btn-back" onclick="history.back()">修正する</button>
+      </div>
+    </form>
+
+  </div>
+
+</body>
+</html>

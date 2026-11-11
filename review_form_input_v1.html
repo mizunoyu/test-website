@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品レビューの投稿（画像添付済み）｜池田屋ランドセル【公式通販】</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      background-color: #f7f5f3;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 共通ヘッダー（ボルドー） */
+    .ikd-header {
+      background-color: #4a1525;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ikd-logo {
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 4px 10px;
+      border-radius: 15px;
+    }
+    .ikd-header-nav {
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* コンテナ */
+    .review-container {
+      max-width: 650px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid #e0dedc;
+    }
+
+    /* パンくず */
+    .review-breadcrumb {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* ページタイトル */
+    .review-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a1525;
+      text-align: center;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #4a1525;
+      padding-bottom: 10px;
+    }
+
+    /* 対象商品確認エリア */
+    .target-product-box {
+      display: flex;
+      gap: 12px;
+      background: #faf7f5;
+      border: 1px solid #e5dfd9;
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+    .target-thumb {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+    .target-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .target-info h2 {
+      font-size: 13px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+    }
+    .target-info p {
+      font-size: 11px;
+      color: #555;
+    }
+
+    /* フォーム全体 */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .required-tag {
+      background: #611822;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .optional-tag {
+      background: #888;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #fff;
+    }
+    .form-textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .form-help-text {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    /* 評価（星5段階）セレクター */
+    .star-rating-select {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 24px;
+    }
+    .star-rating-select input {
+      display: none;
+    }
+    .star-rating-select label {
+      color: #ccc;
+      cursor: pointer;
+    }
+    .star-rating-select input:checked ~ label,
+    .star-rating-select label:hover,
+    .star-rating-select label:hover ~ label {
+      color: #611822;
+    }
+
+    /* チェックボックスグループ */
+    .checkbox-group {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    /* ==========================================
+       【最適化された画像添付エリア（添付後UI）】
+       ========================================== */
+    .uploaded-files-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .uploaded-file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #faf7f5;
+      border: 1px solid #e5dfd9;
+      border-radius: 6px;
+      padding: 8px 12px;
+    }
+    .file-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .file-mini-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      background: #fff;
+    }
+    .file-name-size {
+      font-size: 12px;
+    }
+    .file-name {
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 2px;
+    }
+    .file-size {
+      color: #777;
+      font-size: 10px;
+    }
+    .btn-file-delete {
+      background: transparent;
+      color: #c53030;
+      border: 1px solid #feb2b2;
+      padding: 4px 8px;
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-file-delete:hover {
+      background: #fff5f5;
+    }
+
+    /* 追加アップロード用コンパクトボックストリガー */
+    .file-upload-add-box {
+      border: 2px dashed #b8a99a;
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+      background: #fcfbfa;
+      cursor: pointer;
+    }
+    .file-upload-add-box:hover {
+      background: #f5f0ec;
+    }
+
+    /* ボタンエリア */
+    .form-action-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .btn-submit {
+      flex: 1;
+      background: #611822;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-submit:hover {
+      background: #4a1525;
+    }
+    .btn-cancel {
+      flex: 1;
+      background: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 24px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-cancel:hover {
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="ikd-header">
+    <div class="ikd-logo">池田屋ランドセル</div>
+    <div class="ikd-header-nav">
+      <div>店舗一覧</div>
+      <div>カート</div>
+      <div>メニュー</div>
+    </div>
+  </header>
+
+  <div class="review-container">
+    
+    <!-- パンくずリスト -->
+    <div class="review-breadcrumb">
+      マイページ &gt; 購入履歴 &gt; 商品レビューの投稿
+    </div>
+
+    <h1 class="review-title">商品レビューの投稿</h1>
+
+    <!-- 対象商品確認エリア -->
+    <div class="target-product-box">
+      <div class="target-thumb">
+        <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="商品サムネイル">
+      </div>
+      <div class="target-info">
+        <h2>【レンタル】No.59 防水牛革プレミアム カラーコンビ</h2>
+        <p>カラー：ラベンダー×ミルク ｜ 数量：1</p>
+      </div>
+    </div>
+
+    <!-- レビュー投稿フォーム -->
+    <form action="review_complete.html" method="POST">
+
+      <!-- 評価（必須） -->
+      <div class="form-group">
+        <label class="form-label">評価（満足度）<span class="required-tag">必須</span></label>
+        <div class="star-rating-select">
+          <input type="radio" id="star5" name="rating" value="5" checked><label for="star5">★</label>
+          <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+          <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+          <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+          <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+        </div>
+      </div>
+
+      <!-- タイトル（必須） -->
+      <div class="form-group">
+        <label class="form-label" for="review-title">タイトル<span class="required-tag">必須</span></label>
+        <input type="text" id="review-title" class="form-input" value="軽くてデザインも大満足です！" required>
+      </div>
+
+      <!-- レビュー本文（必須） -->
+      <div class="form-group">
+        <label class="form-label" for="review-body">レビュー本文<span class="required-tag">必須</span></label>
+        <textarea id="review-body" class="form-textarea" required>実物をレンタルで試せたので、子どもが納得して色を選べました。届いたときからとても気に入って、背負いやすいと大喜びしています！</textarea>
+      </div>
+
+      <!-- ニックネーム（任意） -->
+      <div class="form-group">
+        <label class="form-label" for="nickname">ニックネーム<span class="optional-tag">任意</span></label>
+        <input type="text" id="nickname" class="form-input" placeholder="未入力の場合は「購入者様」と表示されます" value="ゆいママ">
+      </div>
+
+      <!-- 子供の性別（任意） -->
+      <div class="form-group">
+        <label class="form-label">お子様の性別<span class="optional-tag">任意</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" name="gender" value="boy"> 男の子</label>
+          <label class="checkbox-label"><input type="checkbox" name="gender" value="girl" checked> 女の子</label>
+        </div>
+      </div>
+
+      <!-- 子供の身長（任意：ランドセル購入時のみ表示） -->
+      <div class="form-group landseal-only-item">
+        <label class="form-label" for="child-height">お子様の身長<span class="optional-tag">任意</span></label>
+        <select id="child-height" class="form-select">
+          <option value="">選択してください</option>
+          <option value="100以下">100cm以下</option>
+          <option value="101-105" selected>101〜105cm</option>
+          <option value="106-110">106〜110cm</option>
+          <option value="111-115">111〜115cm</option>
+          <option value="116-120">116〜120cm</option>
+          <option value="121以上">121cm以上</option>
+        </select>
+      </div>
+
+      <!-- 小学校入学年度（任意：ランドセル購入時のみ表示） -->
+      <div class="form-group landseal-only-item">
+        <label class="form-label" for="admission-year">小学校入学年度<span class="optional-tag">任意</span></label>
+        <select id="admission-year" class="form-select">
+          <option value="">選択してください</option>
+          <option value="2027" selected>2027年度</option>
+          <option value="2026">2026年度</option>
+          <option value="2025">2025年度</option>
+          <option value="2024">2024年度</option>
+          <option value="2023">2023年度</option>
+        </select>
+      </div>
+
+      <!-- ========================================================
+         【画像添付後の状態UI】
+         ======================================================== -->
+      <div class="form-group">
+        <label class="form-label">画像の添付<span class="optional-tag">任意</span></label>
+        
+        <!-- 添付済みファイル一覧リスト -->
+        <div class="uploaded-files-list">
+          <!-- 添付ファイル1 -->
+          <div class="uploaded-file-item">
+            <div class="file-meta">
+              <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="サムネイル" class="file-mini-thumb">
+              <div class="file-name-size">
+                <div class="file-name">randoseru_front_01.jpg</div>
+                <div class="file-size">1.4 MB</div>
+              </div>
+            </div>
+            <button type="button" class="btn-file-delete">削除</button>
+          </div>
+
+          <!-- 添付ファイル2 -->
+          <div class="uploaded-file-item">
+            <div class="file-meta">
+              <img src="https://www.pikachan.com/image/common/noimage.jpg" alt="サムネイル" class="file-mini-thumb">
+              <div class="file-name-size">
+                <div class="file-name">fitting_child_pose.png</div>
+                <div class="file-size">2.8 MB</div>
+              </div>
+            </div>
+            <button type="button" class="btn-file-delete">削除</button>
+          </div>
+        </div>
+
+        <!-- 追加アップロード用エリア（残り3件まで追加可能） -->
+        <div class="file-upload-add-box" onclick="document.getElementById('file-input').click()">
+          <p style="font-size: 11px; color: #555;">📁 さらに画像を追加する（あと3件まで添付可能・1ファイル10MBまで）</p>
+          <input type="file" id="file-input" style="display: none;" multiple accept="image/*">
+        </div>
+      </div>
+
+      <!-- 送信ボタンエリア -->
+      <div class="form-action-buttons">
+        <button type="submit" class="btn-submit">確認画面へ進む</button>
+        <button type="button" class="btn-cancel" onclick="history.back()">キャンセル</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
